@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/two-sum.js",
+            "program": "${workspaceFolder}/valid-parentheses.js",
             "console": "internalConsole"
         }
     ]
