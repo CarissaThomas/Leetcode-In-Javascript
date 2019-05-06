@@ -1,42 +1,37 @@
 //In the end, if we are left with a stack still having elements, then this implies an invalid expression.
 
 var s = []; //Initialize a stack S.
-var input = "{[]}";
-var pairs
+var input = "{[)(";
+var pairs = {
+    ")": "(",
+    "]": "[",
+    "}": "{"
+}
+
 
 function validParenthesis(input) {
-    for (var i = 0; i < input.length; i++) { //Process each bracket of the expression one at a time.
-        if (input.charAt(i) == '(' || input.charAt(i) == '{' || input.charAt(i) == '[') { //If we encounter an opening bracket, we simply push it onto the stack.
-            s.push(input.charAt(i));
-        }
+    for (var i =  0; i < input.length; i++) { //Process each bracket of the expression one at a time.
+        var c = input.charAt(i); // Current character we are iterating through from our string
 
-        switch (input.charAt(i)) { //If we encounter a closing bracket, then we check the element on top of the stack. 
-            case ')':
-                if (s.indexOf('(') != 1) {
-                    s.slice(i, i);
-                }
-                break;
-            case '}':
-                if (s.indexOf('{') != 1) {
-                    s.slice(i, i);
-                }
-                break;
-            case ']':
-                if (s.indexOf('[') != 1) {
-                    s.slice(i, i);
-                }
-                break;
-            default:
-            // code block
+        if (pairs.hasOwnProperty(c)) { // If the character is a closing bracket 
+            var topElement = s.length == 0 ? "" : s.pop();
+
+            if (pairs[c] === topElement) {  // If top element matches what we found pop it off the stack
+                s.pop();
+            }
+        } else { // If its an open bracket
+            s.push(input.charAt(i))
         }
 
     }
-
-    if (s.length > 0) { //If we are left with a stack still having elements, then this implies an invalid expression.
-        return false;
-    } else {
+    if (s.length === 0) { //If we are left with a stack still having elements, then this implies an invalid expression.
         return true;
+    } else {
+        return false;
     }
 }
+
+
+
 
 validParenthesis(input);
