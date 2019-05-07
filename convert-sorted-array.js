@@ -12,11 +12,11 @@ function buildBinaryTree(nodes, start, end) {
         } 
 
         var mid = Math.floor((start + end) / 2); 
-        var root = new treeNode(nodes[mid]); //Get the value of the middle node (because our list is already ordered)
+        var root = new treeNode(nodes[mid]); //Get the value of the root node (because our list is already ordered)
   
         root.left = buildBinaryTree(nodes, start, mid - 1);// Using index in Inorder traversal, construct left and right subtrees
         root.right = buildBinaryTree(nodes, mid + 1, end); 
-  
+        
         return root; 
 }
 
